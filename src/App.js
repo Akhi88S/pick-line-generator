@@ -11,6 +11,9 @@ const App = () => {
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
+  // Use a counter to create a new instance of useSpring whenever pickupLines changes
+  const [counter, setCounter] = useState(0);
+
   const generatePickupLine = async () => {
     try {
       setIsButtonDisabled(true);
@@ -21,16 +24,14 @@ const App = () => {
     } catch (error) {
       console.error('Error fetching pickup line:', error);
     } finally {
+      console.log(counter);
       setIsLoading(false);
       setTimeout(() => setIsButtonDisabled(false), 300);
     }
   };
 
-  // Use a counter to create a new instance of useSpring whenever pickupLines changes
-  const [counter, setCounter] = useState(0);
-
   useEffect(() => {
-    setCounter(counter + 1);
+    setCounter((prevCounter)=>prevCounter + 1);
   }, [pickupLines]);
 
   const fadeInProps = useSpring({
