@@ -4,7 +4,7 @@ import { Button, Container, Row, Col, Spinner } from 'react-bootstrap';
 import { useSpring, animated, config } from 'react-spring';
 import './App.css';
 
-const API_URL = 'https://rizzapi.vercel.app/random';
+const API_URL = 'https://blog-app-backend-umber.vercel.app/utility/generate-random-pickuplines';
 
 const App = () => {
   const [pickupLines, setPickupLines] = useState([]);
@@ -19,7 +19,7 @@ const App = () => {
       setIsButtonDisabled(true);
       setIsLoading(true);
       const response = await (await fetch(API_URL)).json();
-      const newLine = response.text;
+      const newLine = response.data.text;
       setPickupLines([...pickupLines, newLine]);
     } catch (error) {
       console.error('Error fetching pickup line:', error);
