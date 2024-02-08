@@ -4,9 +4,6 @@ import { Button, Container, Row, Col, Spinner } from "react-bootstrap";
 import { useSpring, animated, config } from "react-spring";
 import "./App.css";
 
-const API_URL =
-  "https://blog-app-backend-umber.vercel.app/utility/generate-random-pickuplines";
-
 const App = () => {
   const [pickupLines, setPickupLines] = useState([]);
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
