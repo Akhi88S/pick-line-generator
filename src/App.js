@@ -1,10 +1,11 @@
 // App.js
-import React, { useState, useEffect } from 'react';
-import { Button, Container, Row, Col, Spinner } from 'react-bootstrap';
-import { useSpring, animated, config } from 'react-spring';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import { Button, Container, Row, Col, Spinner } from "react-bootstrap";
+import { useSpring, animated, config } from "react-spring";
+import "./App.css";
 
-const API_URL = 'https://blog-app-backend-umber.vercel.app/utility/generate-random-pickuplines';
+const API_URL =
+  "https://blog-app-backend-umber.vercel.app/utility/generate-random-pickuplines";
 
 const App = () => {
   const [pickupLines, setPickupLines] = useState([]);
@@ -18,11 +19,11 @@ const App = () => {
     try {
       setIsButtonDisabled(true);
       setIsLoading(true);
-      const response = await (await fetch(API_URL)).json();
+      const response = await (await fetch("API_URL")).json();
       const newLine = response.data.text;
       setPickupLines([...pickupLines, newLine]);
     } catch (error) {
-      console.error('Error fetching pickup line:', error);
+      console.error("Error fetching pickup line:", error);
     } finally {
       console.log(counter);
       setIsLoading(false);
@@ -31,7 +32,7 @@ const App = () => {
   };
 
   useEffect(() => {
-    setCounter((prevCounter)=>prevCounter + 1);
+    setCounter((prevCounter) => prevCounter + 1);
   }, [pickupLines]);
 
   const fadeInProps = useSpring({
@@ -47,7 +48,11 @@ const App = () => {
           <h1 className="app-header">Valentine's Pickup Lines</h1>
           <div className="instagram-layout">
             {pickupLines.map((line, index) => (
-              <animated.div key={index} style={fadeInProps} className="pickup-card">
+              <animated.div
+                key={index}
+                style={fadeInProps}
+                className="pickup-card"
+              >
                 {line}
               </animated.div>
             ))}
@@ -57,14 +62,14 @@ const App = () => {
               </div>
             )}
           </div>
-          <div className='generate-btn-container'>
+          <div className="generate-btn-container">
             <Button
               variant="primary"
               onClick={generatePickupLine}
               className="generate-btn"
               disabled={isButtonDisabled}
             >
-              {isLoading ? 'Generating...' : 'Generate Pickup Line'}
+              {isLoading ? "Generating..." : "Generate Pickup Line"}
             </Button>
           </div>
         </Col>
